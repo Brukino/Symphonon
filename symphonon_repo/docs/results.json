@@ -1,0 +1,316 @@
+{
+  "dataset": "N\u00f8rrek\u00e6r Enge",
+  "algorithm": "Symphonon P v5-full",
+  "params": {
+    "WIND_ALPHA": 0.25,
+    "FLEET_MIN_TURB": 3
+  },
+  "n_turbines": 42,
+  "n_valid": 42,
+  "wind_mast": true,
+  "fa_mean": 0.368,
+  "fa_median": 0.386,
+  "fa_below_010": 0,
+  "fa_below_025": 10,
+  "reference": {
+    "kelmarsh_v41": 0.905,
+    "kelmarsh_v5w2": 0.851,
+    "penmanshiel_v41": 0.183
+  },
+  "turbine_details": {
+    "T01": {
+      "fa_ep": 6,
+      "n_months": 18.13,
+      "fa_rate": 0.331,
+      "insufficient": false,
+      "wind": true
+    },
+    "T02": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T03": {
+      "fa_ep": 11,
+      "n_months": 18.13,
+      "fa_rate": 0.607,
+      "insufficient": false,
+      "wind": true
+    },
+    "T04": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T05": {
+      "fa_ep": 5,
+      "n_months": 18.13,
+      "fa_rate": 0.276,
+      "insufficient": false,
+      "wind": true
+    },
+    "T06": {
+      "fa_ep": 6,
+      "n_months": 18.13,
+      "fa_rate": 0.331,
+      "insufficient": false,
+      "wind": true
+    },
+    "T07": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T08": {
+      "fa_ep": 5,
+      "n_months": 18.13,
+      "fa_rate": 0.276,
+      "insufficient": false,
+      "wind": true
+    },
+    "T09": {
+      "fa_ep": 9,
+      "n_months": 18.13,
+      "fa_rate": 0.496,
+      "insufficient": false,
+      "wind": true
+    },
+    "T10": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T11": {
+      "fa_ep": 6,
+      "n_months": 18.13,
+      "fa_rate": 0.331,
+      "insufficient": false,
+      "wind": true
+    },
+    "T12": {
+      "fa_ep": 8,
+      "n_months": 18.13,
+      "fa_rate": 0.441,
+      "insufficient": false,
+      "wind": true
+    },
+    "T13": {
+      "fa_ep": 6,
+      "n_months": 18.13,
+      "fa_rate": 0.331,
+      "insufficient": false,
+      "wind": true
+    },
+    "T14": {
+      "fa_ep": 10,
+      "n_months": 18.13,
+      "fa_rate": 0.552,
+      "insufficient": false,
+      "wind": true
+    },
+    "T15": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T16": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T17": {
+      "fa_ep": 14,
+      "n_months": 18.13,
+      "fa_rate": 0.772,
+      "insufficient": false,
+      "wind": true
+    },
+    "T18": {
+      "fa_ep": 10,
+      "n_months": 18.13,
+      "fa_rate": 0.552,
+      "insufficient": false,
+      "wind": true
+    },
+    "T19": {
+      "fa_ep": 9,
+      "n_months": 18.13,
+      "fa_rate": 0.496,
+      "insufficient": false,
+      "wind": true
+    },
+    "T20": {
+      "fa_ep": 8,
+      "n_months": 18.13,
+      "fa_rate": 0.441,
+      "insufficient": false,
+      "wind": true
+    },
+    "T21": {
+      "fa_ep": 10,
+      "n_months": 18.13,
+      "fa_rate": 0.552,
+      "insufficient": false,
+      "wind": true
+    },
+    "T22": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T23": {
+      "fa_ep": 3,
+      "n_months": 18.13,
+      "fa_rate": 0.165,
+      "insufficient": false,
+      "wind": true
+    },
+    "T24": {
+      "fa_ep": 3,
+      "n_months": 18.13,
+      "fa_rate": 0.165,
+      "insufficient": false,
+      "wind": true
+    },
+    "T25": {
+      "fa_ep": 8,
+      "n_months": 18.13,
+      "fa_rate": 0.441,
+      "insufficient": false,
+      "wind": true
+    },
+    "T26": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T27": {
+      "fa_ep": 8,
+      "n_months": 18.13,
+      "fa_rate": 0.441,
+      "insufficient": false,
+      "wind": true
+    },
+    "T28": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T29": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T30": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T31": {
+      "fa_ep": 5,
+      "n_months": 18.13,
+      "fa_rate": 0.276,
+      "insufficient": false,
+      "wind": true
+    },
+    "T32": {
+      "fa_ep": 5,
+      "n_months": 18.13,
+      "fa_rate": 0.276,
+      "insufficient": false,
+      "wind": true
+    },
+    "T33": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T34": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T35": {
+      "fa_ep": 4,
+      "n_months": 18.13,
+      "fa_rate": 0.221,
+      "insufficient": false,
+      "wind": true
+    },
+    "T36": {
+      "fa_ep": 6,
+      "n_months": 18.13,
+      "fa_rate": 0.331,
+      "insufficient": false,
+      "wind": true
+    },
+    "T37": {
+      "fa_ep": 7,
+      "n_months": 18.13,
+      "fa_rate": 0.386,
+      "insufficient": false,
+      "wind": true
+    },
+    "T38": {
+      "fa_ep": 8,
+      "n_months": 18.13,
+      "fa_rate": 0.441,
+      "insufficient": false,
+      "wind": true
+    },
+    "T39": {
+      "fa_ep": 6,
+      "n_months": 18.13,
+      "fa_rate": 0.331,
+      "insufficient": false,
+      "wind": true
+    },
+    "T40": {
+      "fa_ep": 3,
+      "n_months": 18.13,
+      "fa_rate": 0.165,
+      "insufficient": false,
+      "wind": true
+    },
+    "T41": {
+      "fa_ep": 8,
+      "n_months": 18.13,
+      "fa_rate": 0.441,
+      "insufficient": false,
+      "wind": true
+    },
+    "T42": {
+      "fa_ep": 10,
+      "n_months": 18.13,
+      "fa_rate": 0.552,
+      "insufficient": false,
+      "wind": true
+    }
+  }
+}
