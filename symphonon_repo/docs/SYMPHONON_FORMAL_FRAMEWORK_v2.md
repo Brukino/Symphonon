@@ -548,3 +548,75 @@ strategia di sopravvivenza (T_locale > T* per mantenere vitalità positiva).
 Il rapporto T_locale/T_global quantifica la **distanza tra Umwelt e campo**
 nel senso di von Uexküll: ogni agente sperimenta un campo ~8.6x più ricco
 della media, perché abita attivamente le zone di massima densità.
+
+---
+
+### Risultato definitivo — Random Navigation Test
+
+*Aggiunto 2026-04-22 — da random_nav_test.py, 8 run per condizione.*
+
+```
+Random walk (nessun gradient ascent):
+  T_locale / T_global = 1.15 ± 0.09
+  95% CI = [1.09, 1.22]
+  CoV = 7.9%
+
+Navigazione standard (gradient ascent su T):
+  T_locale / T_global = 8.94 ± 0.13
+  95% CI = [8.85, 9.04]
+  CoV = 1.5%
+
+Delta: +675%
+```
+
+**Conclusione:** la navigazione attiva verso i massimi locali di T
+è la causa del selection bias. La struttura eterogenea del campo
+Kuramoto è necessaria ma non sufficiente — senza gradient ascent
+gli agenti si distribuiscono uniformemente (ratio ≈ 1).
+
+**Catena causale completa:**
+
+```
+1. Campo Kuramoto-Langevin
+   → genera spontaneamente zone di alta/bassa vorticity
+
+2. Navigazione attiva (gradient ascent su T)
+   → i gestalt si concentrano nelle zone di alta vorticity
+   → T_locale/T_global = 8.63x (baseline, CoV=3%, n=8)
+
+3. Perturbazioni polo->phi (perturb_phi)
+   → amplificazione locale aggiuntiva
+   → +0.32x (+3.5%)
+
+4. Totale: 8.94x ± 0.13
+```
+
+**Cause escluse definitivamente:**
+- Geometria di navigazione (n_dir, r_vis, step)
+- Campo psi (Allen-Cahn, memoria spaziale)
+- Perturbazioni perturb_phi come causa principale
+- Struttura del campo come causa sufficiente (senza navigazione: ratio=1.15)
+
+**Formulazione per pubblicazione:**
+
+> The T_local/T_global ratio of 8.94 ± 0.13 arises from active
+> gradient ascent on the local T field: agents navigating toward
+> vorticity maxima concentrate in high-density regions, while
+> agents performing random walks show ratio = 1.15 ± 0.09
+> (delta +675%, n=8 runs per condition, p << 0.001).
+> The Kuramoto field generates structural heterogeneity;
+> active navigation exploits it. Agent-induced field amplification
+> (perturb_phi) contributes an additional 3.5%.
+
+**Connessione con ROF / Peirce / Umwelt:**
+
+Il risultato formalizza la distinzione tra:
+- *struttura del campo* (campo Kuramoto — Oggetto Dinamico in Peirce)
+- *esperienza dell'agente* (T_locale — Oggetto Immediato)
+- *strategia di navigazione* (gradient ascent — Interpretante come azione)
+
+Il rapporto 8.94x quantifica la distanza Umwelt/campo:
+ogni agente abita un mondo ~9x più ricco della media
+perché lo costruisce attivamente attraverso la navigazione.
+Senza questa costruzione attiva, il mondo dell'agente
+converge verso la media del campo (ratio → 1).
