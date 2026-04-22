@@ -2,7 +2,7 @@
   "_meta": {
     "version": "0.1",
     "last_updated": "2026-04-22",
-    "session_count": 3,
+    "session_count": 4,
     "description": "Stato persistente del dialogo Dario-Claude. Non e' una traiettoria."
   },
   "calibration": {
@@ -33,8 +33,8 @@
     {
       "id": "gestalt_v4",
       "title": "Symphonon Gestalt v4",
-      "status": "attivo \u2014 baseline stability confermata (CoV=3%)",
-      "open_question": "Test navigazione casuale: il ratio scende verso 1 senza navigazione attiva verso massimi T?",
+      "status": "attivo \u2014 catena causale T_ratio completata",
+      "open_question": null,
       "last_moved": "2026-04-22"
     },
     {
@@ -106,14 +106,19 @@
       "date": "2026-04-22",
       "decision": "Selection bias intrinseco confermato: T_local/T_global = 8.63x +/- 0.26 (CoV=3%, n=8)",
       "reason": "baseline_test.py: 8 run indipendenti con pert=0. Componente indotta (perturb_phi) solo 3.7%. Risultato publishable-level."
+    },
+    {
+      "date": "2026-04-22",
+      "decision": "La navigazione attiva e la causa del selection bias (ratio 1.15 random walk vs 8.94 standard, delta +675%)",
+      "reason": "random_nav_test.py: 8 run. Random walk ratio=1.15 +/- 0.09. La struttura Kuramoto genera eterogeneita, la navigazione la sfrutta."
     }
   ],
   "open_questions": [
     {
       "id": "T_ratio_pertphi",
-      "question": "Test navigazione casuale: senza navigazione attiva verso massimi T, il ratio scende verso 1? Se si: e la navigazione la causa. Se no: e la struttura del campo Kuramoto.",
+      "question": "CHIUSA: la navigazione attiva e la causa del selection bias. Dimostrato con random_nav_test (ratio 1.15 vs 8.94).",
       "domain": "Symphonon Gestalt",
-      "priority": "alta",
+      "priority": "chiusa",
       "last_updated": "2026-04-22"
     },
     {
@@ -137,18 +142,23 @@
   ],
   "context_snapshot": {
     "T_ratio_investigation": {
-      "valore": "8.63x +/- 0.26 (baseline), 8.94x +/- 0.13 (standard)",
-      "CI_95": "[8.45, 8.81] baseline",
-      "CoV": "2.99% baseline, 1.48% standard",
-      "decomposizione": "intrinseco 96.5% (8.63x) + indotto 3.5% (perturb_phi +0.32x)",
+      "status": "CHIUSO \u2014 catena causale completa",
+      "risultato_finale": "T_local/T_global = 8.94x dalla navigazione attiva verso massimi T nel campo Kuramoto",
+      "random_walk": "ratio = 1.15 +/- 0.09 (CoV=7.9%, n=8)",
+      "standard_nav": "ratio = 8.94 +/- 0.13 (CoV=1.5%, n=8)",
+      "delta": "+675% \u2014 differenza netta",
+      "decomposizione": {
+        "navigazione_attiva": "96.5% del ratio (8.63x baseline)",
+        "perturb_phi": "3.5% (+0.32x)",
+        "campo_kuramoto": "genera eterogeneita strutturale, non aggrega da solo"
+      },
       "escluso": [
         "geometria navigazione",
-        "campo psi (Allen-Cahn)",
-        "perturb_phi come causa principale"
+        "campo psi",
+        "perturb_phi come causa principale",
+        "struttura campo come causa sufficiente"
       ],
-      "candidato_attivo": "navigazione attiva verso massimi T nel campo Kuramoto",
-      "status_claim": "publishable-level \u2014 CoV<5%, n=8, CI stretto",
-      "formulazione": "Agents concentrate in high-vorticity regions with stable ratio T_local/T_global = 8.63 +/- 0.26 (CoV=3%, n=8). Agent-induced amplification accounts for only 3.7% of total ratio."
+      "formulazione_pubblicazione": "The T_local/T_global ratio arises from active gradient ascent: agents navigating toward T maxima achieve ratio=8.94 +/- 0.13, while random-walk agents show ratio=1.15 +/- 0.09 (delta +675%, n=8). The Kuramoto field generates structural heterogeneity; active navigation exploits it."
     },
     "projects": {
       "symphonon_P": {
@@ -216,6 +226,18 @@
         "Prossimo test: navigazione casuale per isolare ruolo navigazione attiva"
       ],
       "tone_note": "progressione metodica \u2014 ogni test esclude una causa e affina la prossima domanda"
+    },
+    {
+      "date": "2026-04-22 (finale)",
+      "key_moves": [
+        "random_nav_test: ratio=1.15 con random walk vs 8.94 standard",
+        "Delta +675% \u2014 navigazione attiva e la causa",
+        "Catena causale completa: Kuramoto -> eterogeneita -> gradient ascent -> 8.94x",
+        "Domanda aperta T_ratio chiusa",
+        "Framework aggiornato con risultato definitivo",
+        "Upload GitHub completato (omega + docs + changelog + memory)"
+      ],
+      "tone_note": "sessione lunga e produttiva \u2014 ogni test ha risposto con chiarezza"
     }
   ]
 }
