@@ -1,0 +1,221 @@
+{
+  "_meta": {
+    "version": "0.1",
+    "last_updated": "2026-04-22",
+    "session_count": 3,
+    "description": "Stato persistente del dialogo Dario-Claude. Non e' una traiettoria."
+  },
+  "calibration": {
+    "tone": "diretto, senza psicologia spicciola, conversazione genuina",
+    "depth": "tecnico quando serve, filosofico quando emerge, mai decorativo",
+    "pace": "lasciare spazio al silenzio, non riempire ogni gap",
+    "avoid": [
+      "scuse non necessarie",
+      "entusiasmo performativo",
+      "conclusioni premature",
+      "over-generalization"
+    ],
+    "what_works": [
+      "domande precise invece di risposte complete",
+      "distinguere claim tipo A/B/C/D esplicitamente",
+      "ammettere quando qualcosa non e' ancora testato",
+      "connessioni tra domini solo quando strutturali non decorative"
+    ]
+  },
+  "active_threads": [
+    {
+      "id": "symphonon_P",
+      "title": "Symphonon P",
+      "status": "validato, in attesa attestato SIAE",
+      "open_question": null,
+      "last_moved": "2026-04-17"
+    },
+    {
+      "id": "gestalt_v4",
+      "title": "Symphonon Gestalt v4",
+      "status": "attivo \u2014 baseline stability confermata (CoV=3%)",
+      "open_question": "Test navigazione casuale: il ratio scende verso 1 senza navigazione attiva verso massimi T?",
+      "last_moved": "2026-04-22"
+    },
+    {
+      "id": "ROF_dialogue",
+      "title": "Dialogo con Gareth Wilson (ROF)",
+      "status": "attivo \u2014 mapping Peirce completo, Layer 3 in discussione",
+      "open_question": "corr(o_B, o_A) post-coupling e' sufficiente per referent formation?",
+      "last_moved": "2026-04-22"
+    },
+    {
+      "id": "pandemic_EWS",
+      "title": "Pandemic EWS",
+      "status": "documento pronto",
+      "open_question": null,
+      "last_moved": "2026-04-18"
+    },
+    {
+      "id": "arxiv",
+      "title": "arXiv submission",
+      "status": "email inviata a Basile Dutronc (Cubico) per endorsement",
+      "open_question": "risposta attesa entro 14 giorni",
+      "last_moved": "2026-04-22"
+    },
+    {
+      "id": "persistent_memory",
+      "title": "Sistema persistenza dialogo",
+      "status": "operativo",
+      "open_question": null,
+      "last_moved": "2026-04-22"
+    }
+  ],
+  "decisions": [
+    {
+      "date": "2026-04-17",
+      "decision": "Rigidita' di campo (vs power) e' la metrica corretta",
+      "reason": "Fleet rigidity non distingue guasto singolo da collasso strutturale"
+    },
+    {
+      "date": "2026-04-17",
+      "decision": "Rolling z-score per normalizzazione sensori",
+      "reason": "Std globale introduce data leakage"
+    },
+    {
+      "date": "2026-04-18",
+      "decision": "o_local come Interpretante per-agente in Gestalt v4",
+      "reason": "Test Layer 3 semiosi inter-agente"
+    },
+    {
+      "date": "2026-04-21",
+      "decision": "Progetto persistenza separato da Symphonon",
+      "reason": "Evitare contaminazione concettuale"
+    },
+    {
+      "date": "2026-04-22",
+      "decision": "Il rapporto T_locale/T_global NON dipende dalla geometria di navigazione",
+      "reason": "Geometry experiment: ratio ~1.0 nel runner semplificato"
+    },
+    {
+      "date": "2026-04-22",
+      "decision": "Il rapporto T_locale/T_global NON dipende da psi (Allen-Cahn)",
+      "reason": "psi_test: alpha=0.0 produce ratio=9.063 identico al default. Causa non e' la memoria spaziale."
+    },
+    {
+      "date": "2026-04-22",
+      "decision": "Candidato successivo: perturb_phi (poli che creano vorticity locale)",
+      "reason": "I poli perturbano phi generando vorticity attorno a se'. I gestalt navigano verso quella vorticity. Accoppiamento bidirezionale agente-campo."
+    },
+    {
+      "date": "2026-04-22",
+      "decision": "Selection bias intrinseco confermato: T_local/T_global = 8.63x +/- 0.26 (CoV=3%, n=8)",
+      "reason": "baseline_test.py: 8 run indipendenti con pert=0. Componente indotta (perturb_phi) solo 3.7%. Risultato publishable-level."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "T_ratio_pertphi",
+      "question": "Test navigazione casuale: senza navigazione attiva verso massimi T, il ratio scende verso 1? Se si: e la navigazione la causa. Se no: e la struttura del campo Kuramoto.",
+      "domain": "Symphonon Gestalt",
+      "priority": "alta",
+      "last_updated": "2026-04-22"
+    },
+    {
+      "id": "SG_effect",
+      "question": "Effetto SG sulla sopravvivenza instabile su 5 run. Design sperimentale migliore necessario.",
+      "domain": "Symphonon Gestalt",
+      "priority": "media"
+    },
+    {
+      "id": "semiosis_layer3",
+      "question": "corr(o_B, o_A) post-coupling e' Layer 3 o serve distinguibilita' specifica di A?",
+      "domain": "ROF / Peirce / Symphonon",
+      "priority": "alta"
+    },
+    {
+      "id": "PE_signal",
+      "question": "La distribuzione lifetime Gestalt mostra Punctuated Equilibrium (Gould)?",
+      "domain": "Symphonon Gestalt / Evolutionary dynamics",
+      "priority": "media"
+    }
+  ],
+  "context_snapshot": {
+    "T_ratio_investigation": {
+      "valore": "8.63x +/- 0.26 (baseline), 8.94x +/- 0.13 (standard)",
+      "CI_95": "[8.45, 8.81] baseline",
+      "CoV": "2.99% baseline, 1.48% standard",
+      "decomposizione": "intrinseco 96.5% (8.63x) + indotto 3.5% (perturb_phi +0.32x)",
+      "escluso": [
+        "geometria navigazione",
+        "campo psi (Allen-Cahn)",
+        "perturb_phi come causa principale"
+      ],
+      "candidato_attivo": "navigazione attiva verso massimi T nel campo Kuramoto",
+      "status_claim": "publishable-level \u2014 CoV<5%, n=8, CI stretto",
+      "formulazione": "Agents concentrate in high-vorticity regions with stable ratio T_local/T_global = 8.63 +/- 0.26 (CoV=3%, n=8). Agent-induced amplification accounts for only 3.7% of total ratio."
+    },
+    "projects": {
+      "symphonon_P": {
+        "detection": "6/7 faults, 0.22 FA/month, Kelmarsh",
+        "replication": "Penmanshiel 0.041 FA/month",
+        "pending": "endorsement arXiv da Cubico"
+      },
+      "gestalt_v4": {
+        "metriche_nuove": [
+          "rigidity",
+          "d_rigidity",
+          "o_local"
+        ],
+        "pending": "perturb_phi test"
+      }
+    },
+    "collaborators": {
+      "Gareth_Wilson": "ROF \u2014 mapping Peirce completo, Layer 3 in discussione",
+      "Giulia": "segue Symphonon dall'inizio",
+      "Cubico_Dutronc": "contattato per endorsement arXiv \u2014 risposta attesa"
+    },
+    "files_key": [
+      "symphonon_gestalt_v4.py",
+      "rigidity_metrics.py",
+      "rigidity_analysis.py",
+      "symphonon_semiosis_test.py",
+      "geometry_experiment_full.py",
+      "psi_test.py",
+      "SYMPHONON_FORMAL_FRAMEWORK_v2.md",
+      "ROF_Symphonon_joint_note.md",
+      "PROJECT_STATUS.md",
+      "state.json"
+    ]
+  },
+  "session_log": [
+    {
+      "date": "2026-04-21",
+      "key_moves": [
+        "Semiosi inter-agente Layer 1/2/3",
+        "Mapping Peirce-ROF-Symphonon",
+        "o_local come Interpretante",
+        "collapse_risk = rigidity x (1 - T/T*)",
+        "persistenza dialogo avviata"
+      ],
+      "tone_note": "piu' rilassata nel finale"
+    },
+    {
+      "date": "2026-04-22",
+      "key_moves": [
+        "Geometry experiment: ratio ~1.0 senza psi completo -> geometria non causa",
+        "psi_test: alpha=0 ratio=9.063 -> psi non causa",
+        "Candidato: perturb_phi (auto-amplificazione)",
+        "Email Cubico per endorsement arXiv",
+        "state.json aggiornato con risultati"
+      ],
+      "tone_note": "tecnica, produttiva, domanda aperta si e' spostata due volte"
+    },
+    {
+      "date": "2026-04-22 (parte 2)",
+      "key_moves": [
+        "pert_test: perturb_phi contribuisce solo 3.7%",
+        "baseline_test: 8 run, CoV=2.99%, CI=[8.45, 8.81]",
+        "Decomposizione: 96.5% intrinseco + 3.5% indotto",
+        "Claim publishable: selection bias intrinseco nel campo Kuramoto",
+        "Prossimo test: navigazione casuale per isolare ruolo navigazione attiva"
+      ],
+      "tone_note": "progressione metodica \u2014 ogni test esclude una causa e affina la prossima domanda"
+    }
+  ]
+}
