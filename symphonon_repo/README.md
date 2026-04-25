@@ -1,167 +1,136 @@
-# Symphonon
+# Symphonon Pandemic EWS
 
-**A relational emergentist framework for structural dynamics in complex adaptive systems.**
-
-*Independent research — Dario Panerati, Monte Amiata, Tuscany*  
-*Status: working paper / pre-publication*
+**AI × Biosecurity Hackathon 2026 · Track: Pandemic Early Warning Systems**  
+Apart Research · BlueDot Impact · Cambridge Biosecurity Hub
 
 ---
 
-## Overview
+## What this is
 
-Symphonon is a theoretical and computational framework that models **relational coherence** in complex adaptive systems. It operates along two distinct but connected tracks:
+A trajectory-based, pathogen-agnostic early warning system for epidemic onset detection.
 
-**Symphonon P** — a practical predictive maintenance tool validated on real wind turbine datasets. It detects structural precursors to failure using a non-Markovian order parameter that tracks latent field coherence without requiring knowledge of global system structure.
+The core claim: epidemic systems **drift before they tip**. Wastewater rises consistently for weeks before clinical cases accumulate. Geographic spread begins in a handful of states before it becomes national. This pipeline detects that directional drift — not the spike.
 
-**Symphonon Ω / Gestalt** — a theoretical simulation framework modeling coupled phase fields, emergent agents (poli), and higher-order organisms (gestalt, supergestalt). It explores how relational coherence produces persistent structure from local dynamics.
+The same engine, validated on two pathogens without retraining:
 
----
-
-## Epistemological Position
-
-The framework formalises a shift from *static metric* to *dynamic observer*: we do not measure the structural state of a system — we observe its trajectory.
-
-The core claim: identity is not a primitive. What we call an object is a compressed, self-consistent trajectory within a relational field. The observer itself is a condition of possibility of the field it navigates.
-
----
-
-## Repository Structure
-
-```
-symphonon/
-├── symphonon_P/           # Predictive maintenance — wind turbine validation
-│   ├── symphonon_P_v4_1_local_runner.py   # Main runner (Kelmarsh/Penmanshiel)
-│   ├── symphonon_probe_v17.py             # Core probe implementation
-│   ├── wind_turbine_precursor.py          # Precursor detection
-│   ├── wind_full_validation.py            # Three-site validation
-│   ├── wind_false_alarm.py                # False alarm analysis
-│   ├── wind_ablation.py                   # Ablation study
-│   ├── wind_bootstrap.py                  # Bootstrap confidence intervals
-│   ├── wind_multiyear.py                  # Multi-year analysis
-│   ├── penmanshiel_validation.py          # Penmanshiel site
-│   ├── symphonon_fv_runner.py             # Fault validation runner
-│   └── symphonon_fv_fault_injection.py    # Fault injection framework
-│
-├── symphonon_omega/       # Field simulation — emergent dynamics
-│   ├── symphonon_gestalt_v4.py            # Current simulation (pygame)
-│   ├── symphonon_gestalt_v3_archive.py    # Previous version
-│   ├── symphonon_v46.py                   # Core field dynamics
-│   └── symphonon_variational_v16.py       # Variational formulation
-│
-├── docs/
-│   ├── SYMPHONON_FORMAL_FRAMEWORK.md      # Formal framework document
-│   ├── results.json                       # Validation results
-│   └── summary.txt                        # Results summary
-│
-└── figures/               # Validation figures
-```
+| | COVID-19 | Influenza |
+|---|---|---|
+| Validation span | 321 weeks (2019–2026) | 914 weeks (2008–2026) |
+| Data sources | CDC NWSS + OWID | ILINet + WHO FluNet |
+| Fusion FPR | 5.6% | 12.3% |
+| Spatial FPR | 1.5% | 3.1% |
+| Classic z-score FPR | 9.1% | 14.4% |
+| Best advance (gradual onset) | — | **+4 to +6 weeks** (H3N2 2014–15, 2017–18) |
+| Engine changes required | none | k: 2.0 → 1.5 |
 
 ---
 
-## Symphonon P — Validated Results
+## How it works
 
-Three-site validation on public datasets:
+**Score first, then fuse — never fuse raw signals.**
 
-| Dataset | Source | Turbines | FA rate | Detection |
-|---------|--------|----------|---------|-----------|
-| Kelmarsh | Zenodo 5841834 | T01–T06 | 0.18/month | DR 0.76 |
-| Penmanshiel | Zenodo 5946808 | multiple | 0.22/month | DR 0.71 |
-| Nørrekær Enge | DTU figshare | 3 turbines | 0.37/month | sensor-limited |
+Each surveillance signal is scored independently by the fraction of recent weeks where the signal was higher than it was a fixed lag ago. A score near 1.0 means consistently rising. A score near 0 means consistently falling. Scores are then fused with runtime quality-adjusted weights.
 
-**Key metrics (Kelmarsh, primary validation site):**
-- Detection rate: **0.76** vs EWMA baseline 0.41
-- False alarm rate: **0.18/month** vs threshold-based 0.91/month
-- Mean advance warning: **23 days** before documented fault
+Two independent alert channels:
 
-**Publishability condition** (pre-stated):
-```
-t_peak(tension) < t_peak(o)  on ≥ 5/6 replicas — verified 6/6
-```
+- **Fusion** — aggregate directional momentum across all signals
+- **Spatial** — fraction of US states trending up simultaneously, gated by minimum reporting nodes (≥ 20)
+
+Both channels use an adaptive threshold computed from trailing 26-week mean and standard deviation. No fixed thresholds.
 
 ---
 
-## Symphonon Ω — Core Architecture
+## Quick start
 
-Three coupled fields, never all simultaneously observable:
+```bash
+# Install dependencies
+pip install numpy pandas matplotlib scipy requests
 
+# Run COVID-19 validation (downloads ~300MB of public data on first run)
+python SymPandemic_data_pipeline.py
+
+# Run influenza validation (requires ILINet cache files — see Data section)
+python SymPandemic_data_pipeline.py --flu
+
+# Offline mode (synthetic data, no downloads)
+python SymPandemic_data_pipeline.py --offline
+
+# Use cached data (no re-download)
+python SymPandemic_data_pipeline.py --no-refresh
 ```
-φ(x,t)  — fast XY phase field (Kuramoto-Langevin, quasi-Markovian)
-ψ(x,t)  — slow Allen-Cahn field with spatial memory (non-Markovian)
-T(x,t)  — latent interface: T = |Vort_φ| · (1−Kap_ψ) · (0.5+Mu_ψ)
-           never directly rendered
-```
 
-Emergent hierarchy:
-```
-Poli        → conditions of possibility navigating T
-Gestalt     → second-order organisms from pole fusion
-SuperGestalt → relational structure between coherent Gestalt
-```
-
-**Empirical findings (Gestalt v4, >15,000 dissolution events):**
-
-1. Gestalt dissolution is purely emergent — continuous energy balance `dV/dt = gain(T_local) − decay`, no arbitrary threshold.
-
-2. T_local on Gestalt ≈ 9.6× T_global — agents navigate toward vorticity maxima. Calibration must use T_local, not T_global.
-
-3. SuperGestalt effect on survival: +1.7% life extension despite navigating zones with 44% lower T_local after SG entry. The relational constraint reduces navigational freedom but provides structural stabilisation — analogous to protein complex quaternary structure.
+Outputs: `validation_real.png`, `validation_flu.png`, `spatial_map_states.png`
 
 ---
 
-## Formal Framework
+## Data sources
 
-The formal framework is in `docs/SYMPHONON_FORMAL_FRAMEWORK.md`.
+All public, all freely available.
 
-Key structures:
+| Source | Signal | URL |
+|---|---|---|
+| CDC NWSS | Wastewater viral load | `data.cdc.gov/api/views/2ew6-ywp6/rows.csv?accessType=DOWNLOAD` |
+| OWID | Cases, deaths, excess mortality | `covid.ourworldindata.org/data/owid-covid-data.csv` |
+| Delphi Epidata | ILINet weighted ILI % | `api.delphi.cmu.edu/epidata/fluview` |
+| WHO FluNet | Confirmed influenza detections | Manual download: `who.int/tools/flunet` → VIW_FNT.csv |
 
-**Order parameter (non-Markovian):**
-```
-o(t+1) = (1−β)·o(t) + β·λ₂(t) + ε(t)
-```
-
-**Tension (implicit temporal derivative):**
-```
-tension(t) = o(t) − λ₂(t) ≈ −(1/β)·ȯ(t)
-```
-
-**Gestalt existence condition (from ROF7):**
-```
-∂(G) = |⟨e^{iφ}⟩_internal − ⟨e^{iφ}⟩_external| > θ_boundary
-```
+For the flu validation, place the FluNet file as `flunet_raw.csv` in the working directory. ILINet data is fetched automatically via the Delphi API and cached locally.
 
 ---
 
-## Datasets
+## Signal configuration
 
-- **Kelmarsh**: [Zenodo 10.5281/zenodo.5841834](https://zenodo.org/record/5841834)
-- **Penmanshiel**: [Zenodo 10.5281/zenodo.5946808](https://zenodo.org/record/5946808)
-- **Nørrekær Enge**: DTU figshare (not Zenodo)
+| Signal | Lag (wL) | Window (wR) | Smoothing (α) | Weight | Role |
+|---|---|---|---|---|---|
+| NWSS wastewater | 4w | 4w | 0.45 | 45% | Leading |
+| Cases/million | 6w | 6w | 0.55 | 30% | Mid-lag |
+| Deaths/million | 10w | 8w | 0.70 | 15% | Lagging |
+| Excess mortality | 12w | 10w | 0.75 | 10% | Lagging |
+| ILI (flu only) | 3w | 3w | 0.35 | 60% | Leading |
+| FluNet (flu only) | 4w | 4w | 0.45 | 40% | Mid-lag |
 
----
-
-## Dependencies
-
-**Symphonon P:**
-```
-numpy, pandas, scipy, sklearn, matplotlib
-```
-
-**Symphonon Ω:**
-```
-numpy, pygame (pip install pygame)
-python3 symphonon_gestalt_v4.py
-```
+Parameters reflect signal lag structure, not per-pathogen tuning.
 
 ---
 
-## IP
+## Where the method works and where it does not
 
-Framework deposited with SIAE OLAF (Italian copyright registration) prior to public release.
+| Scenario | Result | Reason |
+|---|---|---|
+| Gradual seasonal onset (flu 2014, 2017) | +4–6 weeks advance | Consistent drift detectable before threshold crossing |
+| Abrupt onset with quality data (COVID BA.5) | −3 weeks vs z-score | Magnitude spikes detected faster by z-score |
+| Novel spillover (H1N1 2009) | Not detected | No pre-transition drift — abrupt unprecedented emergence |
+| Post-disruption baseline (flu 2022–23) | Degraded | Adaptive threshold miscalibrated after COVID endemic shift |
 
 ---
 
-## Contact
+## Channels tested and not validated
 
-Dario Panerati — independent researcher, Monte Amiata, Tuscany, Italy.
+Two additional channels derived from complex-systems theory were implemented and did not add value:
 
-*This is pre-publication research. The framework is shared for scientific exchange, not as a finished product.*
+- **Rigidity** (1 − rolling correlation between regional and national ILI): FPR 12.2%, 0/5 onsets detected. Fires during every seasonal cycle because regional timing varies naturally — not specific to onset. Requires a per-region outlier approach rather than national mean pooling.
+- **CSD (AR(1) + variance)**: FPR 19.5%, all detections post-onset. Under strong periodic forcing, AR(1) saturates at the seasonal peak, not the beginning. Not a valid onset detector for seasonal influenza.
+
+Both are in the codebase; neither is claimed as validated.
+
+---
+
+## Theoretical grounding
+
+This work is a domain transfer of the Symphonon framework (see parent repo), which encodes complex-systems properties — directional momentum, geographic diffusion, regional decoupling — as computable scores over time-series data. The framework was originally validated on industrial prognostics (wind turbines: Kelmarsh SCADA, Penmanshiel; jet engines: NASA CMAPSS).
+
+The rigidity metric has formal grounding in the Relational Operational Framework (Panerati & Wilson, 2026), which provides a structural account of regional autonomy as a precursor to super-spreader dynamics.
+
+---
+
+## Reproducibility
+
+All numerical results in the technical brief are generated by running the two commands above. No external configuration, no trained models, no proprietary data.
+
+Version: `symphonon-pandemic-ews-v1.0.0-alpha`
+
+---
+
+## License
+
+See parent repository.
